@@ -9,6 +9,15 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  asyncData(){
+    console.log('asyncData')
+  },
+  fetch(context){
+    console.log('fetch')
+    console.log(context.route.name)
+  },
+  created(){
+    console.log('created')
+  }
 }
 </script>
