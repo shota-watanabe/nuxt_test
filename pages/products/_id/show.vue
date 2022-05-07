@@ -1,12 +1,16 @@
 <template>
   <div>
-    index<br>
-    <NuxtLink to="/about">about</NuxtLink>
+    詳細表示<br>
+    {{ $route.params.id }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+
 }
 </script>
+
+<style>
+
+</style>
