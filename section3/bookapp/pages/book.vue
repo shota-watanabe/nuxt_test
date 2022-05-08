@@ -3,6 +3,7 @@
     <NuxtChild
     :books="books"
     @add-book-list="addBook"
+    @update-book-info="updateBookInfo"
     />
   </div>
 </template>
@@ -51,6 +52,21 @@ export default {
     saveBooks() {
       const parsed = JSON.stringify(this.books)
       localStorage.setItem(STORAGE_KEY, parsed)
+    },
+    updateBookInfo(e){
+      const updateInfo = {
+        id: e.id,
+        readDate: e.readDate,
+        memo: e.memo,
+        title: this.books[e.id].title,
+        image: this.books[e.id].title,
+        description: this.books[e.id].description
+      }
+      // 指定したidから1番目のオブジェクトをupdateInfoに置き換える
+      this.books.splice(e.id, 1, updateInfo)
+      this.saveBooks()
+      // 保存したタイミングでindexに移動
+      this.$router.push('/book')
     },
     goToEditPage(id){
       // ページ切り替え（ビュールーターの機能）
