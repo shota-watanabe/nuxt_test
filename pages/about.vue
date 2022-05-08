@@ -1,7 +1,9 @@
 <template>
   <div>
     about<br>
-    {{ now }}
+    {{ now }}<br>
+    <img src="~/assets/images/nuxt-course.jpeg" width="300"><br>
+    <div class="red-b">assets/cssのテスト</div>
   </div>
 </template>
 
