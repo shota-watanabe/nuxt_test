@@ -31,7 +31,7 @@
               {{ book.description }}
               <v-spacer />
               <v-card-actions>
-                <v-btn class="mx-2" fab dark color="indigo">
+                <v-btn class="mx-2" fab dark color="indigo" @click="addBookList(index)">
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn>
               </v-card-actions>
@@ -53,6 +53,13 @@ export default {
     }
   },
   methods: {
+    addBookList(index){
+      // $emit(イベント名、渡したい値)
+      // イベント名はケバブケースにするのが慣習
+      this.$emit('add-book-list', this.searchResults[index])
+      // console.log(this.searchResults[index])
+    },
+
     async search(keyword) {
       this.searchResults = []
       // クエリーストリングを作成
