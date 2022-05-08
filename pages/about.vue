@@ -12,7 +12,7 @@ data(){
     now:null
   }
 },
-mounted(){
+mounted(){ 
   this.now = this.$dayjs().format('YYYY-MM-DD HH:mm:ss')
 }
 }
