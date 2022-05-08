@@ -1,6 +1,9 @@
 <template>
   <div>
-    <NuxtChild @add-book-list="addBook" />
+    <NuxtChild
+    :books="books"
+    @add-book-list="addBook"
+    />
   </div>
 </template>
 
@@ -35,7 +38,11 @@ export default {
         readDate: '',
         memo: '',
       })
-      this.saveBooks()
+      this.saveBooks();
+      // 最後に追加したidのコード
+      // -1は後ろから取得。[0]は後ろから0番目（一番うしろ）
+      // console.log(this.books.slice(-1)[0].id)
+      this.goToEditPage(this.books.slice(-1)[0].id)
     },
     removeBook(x) {
       this.books.splice(x, 1)
@@ -45,6 +52,10 @@ export default {
       const parsed = JSON.stringify(this.books)
       localStorage.setItem(STORAGE_KEY, parsed)
     },
+    goToEditPage(id){
+      // ページ切り替え（ビュールーターの機能）
+      this.$router.push(`/book/edit/${id}`)
+    }
   },
 }
 </script>
