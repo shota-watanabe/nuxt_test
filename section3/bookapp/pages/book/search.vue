@@ -12,6 +12,7 @@
         <v-btn color="secondary" to="/book">一覧に戻る</v-btn>
       </v-col>
     </v-row>
+    <div v-show="!isFound" class="mt-4">検索結果は0件でした</div>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
     return {
       keyword: '',
       searchResults: [],
+      isFound: true
     }
   },
   methods: {
@@ -33,13 +35,18 @@ export default {
         maxResults: 40,
       }
       const queryParams = new URLSearchParams(params)
-      console.log(baseUrl + queryParams)
+      // console.log(baseUrl + queryParams)
 
       // fetchでJSON取得
       const response = await fetch(baseUrl + queryParams).then((response) =>
         response.json()
       )
-      console.log(response.items)
+      // console.log(response.items)
+
+      if(response.items === undefined){
+        this.isFound = false
+      }else{
+        this.isFound = true
       // 必要な情報を配列にpush
       for (const book of response.items) {
         const title = book.volumeInfo.title
@@ -50,6 +57,7 @@ export default {
           image: img ? img.thumbnail : '',
           description: description ? description.slice(0, 40) : '',
         })
+      }
       }
     },
   },
