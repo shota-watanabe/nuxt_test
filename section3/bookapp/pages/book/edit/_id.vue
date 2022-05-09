@@ -54,6 +54,11 @@ export default {
   beforeRouteEnter(to, from, next){
     next(vm=>{
       vm.book = vm.books[vm.$route.params.id]
+      if(vm.book.readDate){
+        vm.date = vm.book.readDate
+      }else{
+        vm.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+      }
     })
   },
 
@@ -66,7 +71,7 @@ export default {
   data(){
     return{
       book:'',
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      date:'',
       menu: false,
     }
   },

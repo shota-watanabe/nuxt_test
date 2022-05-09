@@ -59,7 +59,7 @@ export default {
         readDate: e.readDate,
         memo: e.memo,
         title: this.books[e.id].title,
-        image: this.books[e.id].title,
+        image: this.books[e.id].image,
         description: this.books[e.id].description
       }
       // 指定したidから1番目のオブジェクトをupdateInfoに置き換える
