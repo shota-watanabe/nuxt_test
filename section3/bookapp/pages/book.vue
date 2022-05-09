@@ -4,6 +4,7 @@
     :books="books"
     @add-book-list="addBook"
     @update-book-info="updateBookInfo"
+    @delete-local-storage="deleteLocalStorage"
     />
   </div>
 </template>
@@ -71,6 +72,16 @@ export default {
     goToEditPage(id){
       // ページ切り替え（ビュールーターの機能）
       this.$router.push(`/book/edit/${id}`)
+    },
+    deleteLocalStorage(){
+      const isDeleted = '本当に削除してもよろしいですか？'
+      if(window.confirm(isDeleted)){
+        // 値を空っぽに
+        localStorage.setItem(STORAGE_KEY, '')
+        localStorage.removeItem(STORAGE_KEY)
+        this.books = []
+        window.location.reload()
+      }
     }
   },
 }

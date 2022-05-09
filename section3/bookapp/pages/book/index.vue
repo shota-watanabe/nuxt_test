@@ -1,8 +1,11 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="6">
-        <v-btn color="primary" to="/boo/search">検索する</v-btn>
+      <v-col cols="8">
+        <v-btn color="primary" to="/book/search">検索する</v-btn>
+      </v-col>
+      <v-col cols="4">
+        <v-btn color="error" @click="deleteLocalStorage">削除する</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -38,6 +41,11 @@ export default {
       default: ()=>{}
     }
   },
+  methods:{
+    deleteLocalStorage(){
+      this.$emit('delete-local-storage')
+    }
+  }
 }
 </script>
 
