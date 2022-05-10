@@ -83,5 +83,9 @@
 <script>
 export default {
   name: 'IndexPage',
+  // 分割代入
+  asyncData({ redirect }){
+    redirect('/book')
+  }
 }
 </script>
